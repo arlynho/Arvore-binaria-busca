@@ -53,6 +53,33 @@ void inserir(int valor)
     }
 }
 
+No *Buscarelemento(int valor)
+{
+    No *aux = raiz;
+    // verificar se existe arvore para buscar o valor
+    if (aux == NULL)
+        return NULL;
+    while (true)
+    {
+        if (valor == aux->valor)
+            return aux;
+        else if (valor < aux->valor)
+        {
+            if (aux->esq == NULL)
+                return NULL;
+            aux = aux->esq;
+        }
+        else if (valor > aux->valor)
+        {
+            if (aux->dir == NULL)
+            {
+                return NULL;
+            }
+            aux = aux->dir;
+        }
+    }
+}
+
 int main()
 {
     // utilizando o metodo de inserir
@@ -62,5 +89,9 @@ int main()
     inserir(13);
     inserir(11);
     inserir(5);
+    No *retorno = Buscarelemento(11);
+    if (retorno != NULL)
+        cout << "valor escontrado:" << retorno->valor;
+
     return 0;
 }
